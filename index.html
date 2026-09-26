@@ -3,1377 +3,963 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>DailyMate - All in One Tools</title>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
 }
 
-:root{
-    --bg:#f4f7fb;
-    --card:#fff;
-    --text:#172033;
-    --primary:#2563eb;
-    --secondary:#7c3aed;
-    --border:#e5e7eb;
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-    background:var(--bg);
-    color:var(--text);
-    transition:.3s;
+  background:#f4f7fb;
+  color:#172033;
+  transition:.3s;
 }
 
 body.dark{
-    --bg:#0f172a;
-    --card:#1e293b;
-    --text:#f8fafc;
-    --border:#334155;
+  background:#111827;
+  color:#f1f5f9;
 }
-
-button,input,select,textarea{
-    font:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-.hidden{
-    display:none!important;
-}
-
-/* ================= LOGIN ================= */
-
-#loginPage{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    background:linear-gradient(135deg,#2563eb,#7c3aed);
-}
-
-.login-box{
-    width:100%;
-    max-width:420px;
-    background:white;
-    padding:30px;
-    border-radius:25px;
-    box-shadow:0 20px 60px #0004;
-}
-
-.logo{
-    text-align:center;
-    font-size:32px;
-    font-weight:bold;
-    margin-bottom:8px;
-}
-
-.login-sub{
-    text-align:center;
-    color:#64748b;
-    margin-bottom:25px;
-}
-
-.login-box input{
-    width:100%;
-    padding:14px;
-    margin:8px 0;
-    border:1px solid #ddd;
-    border-radius:12px;
-    outline:none;
-}
-
-.primary{
-    width:100%;
-    border:0;
-    padding:14px;
-    margin-top:10px;
-    color:white;
-    background:linear-gradient(135deg,#2563eb,#7c3aed);
-    border-radius:12px;
-    font-weight:bold;
-}
-
-/* ================= HEADER ================= */
 
 header{
-    background:linear-gradient(135deg,#2563eb,#7c3aed);
-    color:white;
-    padding:25px 20px;
-}
-
-.header-content{
-    max-width:1200px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
+  color:white;
+  padding:22px 15px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 4px 15px rgba(0,0,0,.15);
 }
 
 header h1{
-    font-size:30px;
+  font-size:30px;
 }
 
 header p{
-    margin-top:5px;
-    opacity:.9;
+  margin-top:6px;
+  opacity:.9;
 }
 
 .header-buttons{
-    display:flex;
-    gap:8px;
+  position:absolute;
+  right:15px;
+  top:20px;
 }
 
 .icon-btn{
-    border:0;
-    padding:10px 14px;
-    border-radius:10px;
-    background:#ffffff22;
-    color:white;
+  border:0;
+  background:rgba(255,255,255,.18);
+  color:white;
+  padding:10px 12px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:17px;
 }
 
-/* ================= SEARCH ================= */
-
-.search-area{
-    max-width:1200px;
-    margin:20px auto;
-    padding:0 20px;
+.search-box{
+  max-width:700px;
+  margin:20px auto;
+  padding:0 15px;
 }
 
 .search-box input{
-    width:100%;
-    padding:15px;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    border-radius:14px;
-    outline:none;
+  width:100%;
+  padding:15px;
+  border:1px solid #d1d5db;
+  border-radius:14px;
+  font-size:16px;
+  outline:none;
 }
 
-/* ================= NAV ================= */
-
-nav{
-    background:var(--card);
-    padding:12px 20px;
-    display:flex;
-    gap:8px;
-    overflow-x:auto;
-    position:sticky;
-    top:0;
-    z-index:20;
-    border-bottom:1px solid var(--border);
+body.dark .search-box input{
+  background:#1f2937;
+  color:white;
+  border-color:#374151;
 }
 
-nav button{
-    white-space:nowrap;
-    border:0;
-    padding:10px 15px;
-    border-radius:20px;
-    background:#eef2ff;
-    color:#334155;
-    font-weight:bold;
+.categories{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:10px 15px 15px;
+  max-width:1200px;
+  margin:auto;
 }
 
-body.dark nav button{
-    background:#334155;
-    color:white;
+.categories button{
+  flex:none;
+  border:0;
+  padding:10px 15px;
+  border-radius:20px;
+  background:#e5e7eb;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-/* ================= MAIN ================= */
+.categories button:hover{
+  background:#2563eb;
+  color:white;
+}
 
-.container{
-    max-width:1200px;
-    margin:auto;
-    padding:10px 20px 40px;
+body.dark .categories button{
+  background:#374151;
+  color:white;
+}
+
+main{
+  max-width:1200px;
+  margin:auto;
+  padding:10px 15px 40px;
 }
 
 .section{
-    margin-bottom:30px;
+  margin-top:30px;
 }
 
-.section-title{
-    margin-bottom:15px;
-    font-size:25px;
+.section h2{
+  margin-bottom:15px;
+  font-size:24px;
 }
 
 .tool-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-    gap:15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:15px;
 }
 
 .tool-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:20px;
-    box-shadow:0 5px 18px #00000008;
-    transition:.2s;
+  background:white;
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 5px 18px rgba(0,0,0,.08);
+  transition:.2s;
 }
 
 .tool-card:hover{
-    transform:translateY(-3px);
+  transform:translateY(-3px);
+}
+
+body.dark .tool-card{
+  background:#1f2937;
+  box-shadow:0 5px 18px rgba(0,0,0,.25);
 }
 
 .tool-card h3{
-    margin-bottom:8px;
-}
-
-.tool-card p{
-    color:#64748b;
-    font-size:14px;
-    margin-bottom:12px;
-}
-
-body.dark .tool-card p{
-    color:#cbd5e1;
+  margin-bottom:10px;
 }
 
 .tool-card input,
-.tool-card select,
-.tool-card textarea{
-    width:100%;
-    padding:11px;
-    margin:5px 0;
-    border:1px solid var(--border);
-    background:var(--bg);
-    color:var(--text);
-    border-radius:9px;
+.tool-card textarea,
+.tool-card select{
+  width:100%;
+  padding:11px;
+  margin:5px 0;
+  border:1px solid #d1d5db;
+  border-radius:9px;
+  outline:none;
 }
 
-.tool-btn{
-    border:0;
-    background:var(--primary);
-    color:white;
-    padding:10px 14px;
-    border-radius:9px;
-    margin-top:5px;
+body.dark .tool-card input,
+body.dark .tool-card textarea,
+body.dark .tool-card select{
+  background:#111827;
+  color:white;
+  border-color:#4b5563;
+}
+
+.tool-card textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+.tool-card button{
+  width:100%;
+  padding:11px;
+  margin-top:7px;
+  border:0;
+  border-radius:9px;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.tool-card button:hover{
+  background:#1d4ed8;
 }
 
 .result{
-    background:#eff6ff;
-    padding:12px;
-    margin-top:10px;
-    border-radius:9px;
-    font-weight:bold;
-    word-break:break-word;
+  margin-top:10px;
+  padding:10px;
+  background:#eef2ff;
+  border-radius:9px;
+  font-weight:bold;
+  word-break:break-word;
 }
 
 body.dark .result{
-    background:#172554;
+  background:#312e81;
 }
 
-/* ================= QUIZ ================= */
-
-.quiz-area{
-    background:var(--card);
-    padding:20px;
-    border-radius:18px;
-    border:1px solid var(--border);
+.timer{
+  font-size:35px;
+  text-align:center;
+  margin:10px;
 }
 
-.quiz-buttons{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-bottom:15px;
+.color-box{
+  height:80px;
+  border-radius:10px;
+  margin-top:10px;
+  border:1px solid #ddd;
 }
 
-.quiz-buttons button{
-    border:0;
-    padding:10px 15px;
-    border-radius:10px;
-    background:var(--secondary);
-    color:white;
+.quiz-question{
+  font-size:18px;
+  font-weight:bold;
+  margin:10px 0;
 }
 
-.option{
-    display:block;
-    background:var(--bg);
-    padding:12px;
-    margin:8px 0;
-    border-radius:10px;
-    cursor:pointer;
+.quiz-options button{
+  margin-top:7px;
 }
-
-/* ================= FOOTER ================= */
 
 footer{
-    background:#111827;
-    color:white;
-    text-align:center;
-    padding:30px;
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:30px 15px;
+  margin-top:30px;
 }
 
-/* ================= MOBILE ================= */
+.hidden{
+  display:none;
+}
 
-@media(max-width:650px){
+@media(max-width:600px){
+  header h1{
+    font-size:24px;
+  }
 
-    .header-content{
-        flex-direction:column;
-        text-align:center;
-    }
+  .header-buttons{
+    position:static;
+    margin-top:12px;
+  }
 
-    header h1{
-        font-size:25px;
-    }
-
-    .container,
-    .search-area{
-        padding-left:12px;
-        padding-right:12px;
-    }
+  .tool-grid{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
-                    LOGIN PAGE
-===================================================== -->
-
-<div id="loginPage">
-
-    <div class="login-box">
-
-        <div class="logo">🌐 DailyMate</div>
-
-        <div class="login-sub">
-            Everything You Need in One Place
-        </div>
-
-        <input
-            id="userName"
-            type="text"
-            placeholder="Enter your name"
-            autocomplete="name"
-        >
-
-        <button
-            class="primary"
-            onclick="login()">
-            Login 🚀
-        </button>
-
-        <p
-            id="loginMessage"
-            style="text-align:center;margin-top:15px;color:#64748b">
-        </p>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-                    MAIN APP
-===================================================== -->
-
-<div id="app" class="hidden">
-
 <header>
+  <h1>🌐 DailyMate</h1>
+  <p>All in One Useful Tools</p>
 
-    <div class="header-content">
-
-        <div>
-            <h1>🌐 DailyMate</h1>
-            <p>One Website • Everyday Useful</p>
-        </div>
-
-        <div class="header-buttons">
-
-            <button
-                class="icon-btn"
-                onclick="toggleDark()">
-                🌙 Dark
-            </button>
-
-            <button
-                class="icon-btn"
-                onclick="logout()">
-                Logout
-            </button>
-
-        </div>
-
-    </div>
-
+  <div class="header-buttons">
+    <button class="icon-btn" onclick="toggleDark()">🌙</button>
+  </div>
 </header>
 
-
-<!-- SEARCH -->
-
-<div class="search-area">
-
-    <div class="search-box">
-
-        <input
-            id="search"
-            placeholder="🔍 Search tools..."
-            oninput="searchTools()">
-
-    </div>
-
+<div class="search-box">
+  <input
+    id="search"
+    type="text"
+    placeholder="🔍 Search any tool..."
+    oninput="searchTools()"
+  >
 </div>
 
-
-<!-- NAVIGATION -->
-
-<nav>
-
-    <button onclick="go('all')">
-        🏠 All
-    </button>
-
-    <button onclick="go('education')">
-        🎓 Education
-    </button>
-
-    <button onclick="go('engineering')">
-        ⚙️ Engineering
-    </button>
-
-    <button onclick="go('it')">
-        💻 IT
-    </button>
-
-    <button onclick="go('design')">
-        🎨 Design
-    </button>
-
-    <button onclick="go('business')">
-        💼 Business
-    </button>
-
-    <button onclick="go('teacher')">
-        👨‍🏫 Teacher
-    </button>
-
-    <button onclick="go('kids')">
-        🧒 Kids
-    </button>
-
-    <button onclick="go('daily')">
-        🏠 Daily
-    </button>
-
-</nav>
-
-
-<div class="container">
-
-
-<!-- =====================================================
-                        DAILY
-===================================================== -->
-
-<section class="section" data-category="daily">
-
-<h2 class="section-title">🏠 Daily Tools</h2>
-
-<div class="tool-grid">
-
-<div class="tool-card">
-
-<h3>🎂 Age Calculator</h3>
-
-<input type="date" id="dob">
-
-<button class="tool-btn" onclick="ageCalc()">
-Calculate
-</button>
-
-<div id="ageResult" class="result"></div>
-
+<div class="categories">
+  <button onclick="go('all')">All</button>
+  <button onclick="go('education')">🎓 Education</button>
+  <button onclick="go('engineering')">⚡ Engineering</button>
+  <button onclick="go('it')">💻 IT</button>
+  <button onclick="go('design')">🎨 Design</button>
+  <button onclick="go('business')">💼 Business</button>
+  <button onclick="go('teacher')">👨‍🏫 Teacher</button>
+  <button onclick="go('kids')">🧒 Kids</button>
+  <button onclick="go('daily')">📅 Daily</button>
 </div>
 
+<main>
 
-<div class="tool-card">
-
-<h3>🔳 QR Generator</h3>
-
-<input
-id="qrText"
-placeholder="Enter text / URL">
-
-<button class="tool-btn" onclick="qrGenerate()">
-Generate
-</button>
-
-<div id="qrResult"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>🔐 Password Generator</h3>
-
-<input
-id="passLength"
-type="number"
-value="12"
-min="4"
-max="50">
-
-<button
-class="tool-btn"
-onclick="passwordGenerate()">
-Generate
-</button>
-
-<div id="passResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>🔄 KM → Miles</h3>
-
-<input
-id="km"
-type="number"
-placeholder="Kilometers">
-
-<button class="tool-btn" onclick="kmMiles()">
-Convert
-</button>
-
-<div id="kmResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>📅 Days Between Dates</h3>
-
-<input type="date" id="date1">
-<input type="date" id="date2">
-
-<button
-class="tool-btn"
-onclick="dateDifference()">
-Calculate
-</button>
-
-<div id="dateResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>🏷️ Discount Calculator</h3>
-
-<input
-id="price"
-type="number"
-placeholder="Original price">
-
-<input
-id="discount"
-type="number"
-placeholder="Discount %">
-
-<button
-class="tool-btn"
-onclick="discountCalc()">
-Calculate
-</button>
-
-<div id="discountResult" class="result"></div>
-
-</div>
-
-</div>
-</section>
-
-
-<!-- =====================================================
-                    EDUCATION
-===================================================== -->
-
+<!-- EDUCATION -->
 <section class="section" data-category="education">
-
-<h2 class="section-title">🎓 Education Tools</h2>
+<h2>🎓 Education Tools</h2>
 
 <div class="tool-grid">
 
 <div class="tool-card">
-
-<h3>📊 Percentage</h3>
-
-<input
-id="obtained"
-type="number"
-placeholder="Obtained marks">
-
-<input
-id="total"
-type="number"
-placeholder="Total marks">
-
-<button
-class="tool-btn"
-onclick="percentageCalc()">
-Calculate
-</button>
-
-<div id="percentageResult" class="result"></div>
-
+<h3>📊 Percentage Calculator</h3>
+<input id="percentValue" type="number" placeholder="Obtained marks">
+<input id="percentTotal" type="number" placeholder="Total marks">
+<button onclick="percentageCalc()">Calculate</button>
+<div id="percentResult" class="result"></div>
 </div>
 
-
 <div class="tool-card">
-
 <h3>🎓 CGPA → Percentage</h3>
-
-<input
-id="cgpa"
-type="number"
-step=".01"
-placeholder="CGPA">
-
-<button
-class="tool-btn"
-onclick="cgpaCalc()">
-Convert
-</button>
-
+<input id="cgpa" type="number" step="0.01" placeholder="Enter CGPA">
+<button onclick="cgpaCalc()">Convert</button>
 <div id="cgpaResult" class="result"></div>
-
 </div>
 
-
 <div class="tool-card">
-
-<h3>📅 Attendance</h3>
-
-<input
-id="present"
-type="number"
-placeholder="Classes attended">
-
-<input
-id="conducted"
-type="number"
-placeholder="Total classes">
-
-<button
-class="tool-btn"
-onclick="attendanceCalc()">
-Calculate
-</button>
-
-<div id="attendanceResult" class="result"></div>
-
+<h3>📅 Attendance Calculator</h3>
+<input id="attPresent" type="number" placeholder="Present days">
+<input id="attTotal" type="number" placeholder="Total days">
+<button onclick="attendanceCalc()">Calculate</button>
+<div id="attResult" class="result"></div>
 </div>
 
-
 <div class="tool-card">
-
-<h3>🧮 Scientific Calculator</h3>
-
-<input
-id="calc"
-type="text"
-placeholder="Example: 25*4+10">
-
-<button
-class="tool-btn"
-onclick="scientificCalc()">
-Calculate
-</button>
-
-<div id="calcResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>📐 Area Calculator</h3>
-
-<input
-id="length"
-type="number"
-placeholder="Length">
-
-<input
-id="width"
-type="number"
-placeholder="Width">
-
-<button
-class="tool-btn"
-onclick="areaCalc()">
-Rectangle Area
-</button>
-
-<div id="areaResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
 <h3>⏱️ Study Timer</h3>
-
-<div
-id="timer"
-style="font-size:30px;text-align:center;margin:10px">
-25:00
+<div id="timer" class="timer">25:00</div>
+<button onclick="startTimer()">Start</button>
+<button onclick="resetTimer()">Reset</button>
 </div>
-
-<button
-class="tool-btn"
-onclick="startTimer()">
-Start
-</button>
-
-<button
-class="tool-btn"
-onclick="resetTimer()">
-Reset
-</button>
-
-</div>
-
-</div>
-</section>
-
-
-<!-- =====================================================
-                    ENGINEERING
-===================================================== -->
-
-<section class="section" data-category="engineering">
-
-<h2 class="section-title">⚙️ Engineering Tools</h2>
-
-<div class="tool-grid">
 
 <div class="tool-card">
-
-<h3>⚡ Ohm's Law</h3>
-
-<input
-id="voltage"
-type="number"
-placeholder="Voltage (V)">
-
-<input
-id="resistance"
-type="number"
-placeholder="Resistance (Ω)">
-
-<button
-class="tool-btn"
-onclick="ohmCalc()">
-Calculate Current
-</button>
-
-<div id="ohmResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>⚡ Electrical Power</h3>
-
-<input
-id="volt2"
-type="number"
-placeholder="Voltage">
-
-<input
-id="current2"
-type="number"
-placeholder="Current">
-
-<button
-class="tool-btn"
-onclick="powerCalc()">
-Calculate
-</button>
-
-<div id="powerResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>🚗 Speed Calculator</h3>
-
-<input
-id="distance"
-type="number"
-placeholder="Distance">
-
-<input
-id="time"
-type="number"
-placeholder="Time">
-
-<button
-class="tool-btn"
-onclick="speedCalc()">
-Calculate
-</button>
-
-<div id="speedResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>🔢 Matrix 2×2 Determinant</h3>
-
-<input id="m1" type="number" placeholder="a">
-<input id="m2" type="number" placeholder="b">
-<input id="m3" type="number" placeholder="c">
-<input id="m4" type="number" placeholder="d">
-
-<button
-class="tool-btn"
-onclick="matrixCalc()">
-Calculate
-</button>
-
-<div id="matrixResult" class="result"></div>
-
-</div>
-
-</div>
-</section>
-
-
-<!-- =====================================================
-                        IT
-===================================================== -->
-
-<section class="section" data-category="it">
-
-<h2 class="section-title">💻 IT & Developer Tools</h2>
-
-<div class="tool-grid">
-
-<div class="tool-card">
-
-<h3>🔢 Binary → Decimal</h3>
-
-<input
-id="binary"
-placeholder="Example: 1010">
-
-<button
-class="tool-btn"
-onclick="binaryCalc()">
-Convert
-</button>
-
-<div id="binaryResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>🔢 Decimal → Binary</h3>
-
-<input
-id="decimal"
-type="number"
-placeholder="Example: 10">
-
-<button
-class="tool-btn"
-onclick="decimalCalc()">
-Convert
-</button>
-
-<div id="decimalResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>🧾 JSON Formatter</h3>
-
-<textarea
-id="jsonInput"
-rows="5"
-placeholder='{"name":"DailyMate"}'>{"name":"DailyMate"}</textarea>
-
-<button
-class="tool-btn"
-onclick="formatJSON()">
-Format
-</button>
-
-<div id="jsonResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>🔤 Word Counter</h3>
-
-<textarea
-id="wordInput"
-rows="4"
-placeholder="Type your text..."
-oninput="wordCount()"></textarea>
-
-<div id="wordResult" class="result">
-Words: 0 | Characters: 0
-</div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>🔗 Base64 Encoder</h3>
-
-<input
-id="baseInput"
-placeholder="Enter text">
-
-<button
-class="tool-btn"
-onclick="base64Encode()">
-Encode
-</button>
-
-<div id="baseResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>🆔 UUID Generator</h3>
-
-<button
-class="tool-btn"
-onclick="uuidGenerate()">
-Generate UUID
-</button>
-
-<div id="uuidResult" class="result"></div>
-
-</div>
-
-</div>
-</section>
-
-
-<!-- =====================================================
-                        DESIGN
-===================================================== -->
-
-<section class="section" data-category="design">
-
-<h2 class="section-title">🎨 Design & Creator Tools</h2>
-
-<div class="tool-grid">
-
-<div class="tool-card">
-
-<h3>🎨 Color Picker</h3>
-
-<input
-type="color"
-id="colorPicker"
-value="#2563eb"
-oninput="colorShow()">
-
-<div id="colorResult" class="result">
-#2563EB
-</div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>🌈 Gradient Generator</h3>
-
-<input
-type="color"
-id="color1"
-value="#2563eb">
-
-<input
-type="color"
-id="color2"
-value="#7c3aed">
-
-<button
-class="tool-btn"
-onclick="gradientGenerate()">
-Generate
-</button>
-
-<div
-id="gradientResult"
-style="height:70px;border-radius:10px;margin-top:10px">
-</div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>📱 Aspect Ratio</h3>
-
-<input
-id="ratioW"
-type="number"
-placeholder="Width">
-
-<input
-id="ratioH"
-type="number"
-placeholder="Height">
-
-<button
-class="tool-btn"
-onclick="ratioCalc()">
-Calculate
-</button>
-
-<div id="ratioResult" class="result"></div>
-
-</div>
-
-</div>
-</section>
-
-
-<!-- =====================================================
-                        BUSINESS
-===================================================== -->
-
-<section class="section" data-category="business">
-
-<h2 class="section-title">💼 Business & Finance</h2>
-
-<div class="tool-grid">
-
-<div class="tool-card">
-
-<h3>💰 EMI Calculator</h3>
-
-<input
-id="loan"
-type="number"
-placeholder="Loan amount">
-
-<input
-id="rate"
-type="number"
-placeholder="Annual interest %">
-
-<input
-id="months"
-type="number"
-placeholder="Months">
-
-<button
-class="tool-btn"
-onclick="emiCalc()">
-Calculate EMI
-</button>
-
-<div id="emiResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>📈 Profit / Loss</h3>
-
-<input
-id="cost"
-type="number"
-placeholder="Cost price">
-
-<input
-id="selling"
-type="number"
-placeholder="Selling price">
-
-<button
-class="tool-btn"
-onclick="profitCalc()">
-Calculate
-</button>
-
-<div id="profitResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>🧾 GST Calculator</h3>
-
-<input
-id="gstPrice"
-type="number"
-placeholder="Amount">
-
-<input
-id="gstRate"
-type="number"
-placeholder="GST %">
-
-<button
-class="tool-btn"
-onclick="gstCalc()">
-Calculate
-</button>
-
-<div id="gstResult" class="result"></div>
-
-</div>
-
-</div>
-</section>
-
-
-<!-- =====================================================
-                        TEACHER
-===================================================== -->
-
-<section class="section" data-category="teacher">
-
-<h2 class="section-title">👨‍🏫 Teacher Tools</h2>
-
-<div class="tool-grid">
-
-<div class="tool-card">
-
-<h3>🎲 Random Student Picker</h3>
-
-<textarea
-id="students"
-rows="5"
-placeholder="Enter names separated by comma"></textarea>
-
-<button
-class="tool-btn"
-onclick="pickStudent()">
-Pick Student
-</button>
-
-<div id="studentResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>📝 Quick Notes</h3>
-
-<textarea
-id="notes"
-rows="5"
-placeholder="Write your notes..."></textarea>
-
-<button
-class="tool-btn"
-onclick="saveNotes()">
-Save Notes
-</button>
-
-<div id="notesResult" class="result"></div>
-
-</div>
-
-
-<div class="tool-card">
-
-<h3>🎯 Random Number</h3>
-
-<input
-id="min"
-type="number"
-placeholder="Minimum">
-
-<input
-id="max"
-type="number"
-placeholder="Maximum">
-
-<button
-class="tool-btn"
-onclick="randomNumber()">
-Generate
-</button>
-
-<div id="randomResult" class="result"></div>
-
-</div>
-
-</div>
-</section>
-
-
-<!-- =====================================================
-                        KIDS
-===================================================== -->
-
-<section class="section" data-category="kids">
-
-<h2 class="section-title">🧒 Kids Zone</h2>
-
-<div class="tool-grid">
-
-<div class="tool-card">
-
-<h3>✖️ Multiplication Tables</h3>
-
-<input
-id="tableNum"
-type="number"
-placeholder="Enter number">
-
-<button
-class="tool-btn"
-onclick="tableGenerate()">
-Show Table
-</button>
-
+<h3>✖️ Multiplication Table</h3>
+<input id="tableNum" type="number" placeholder="Enter number">
+<button onclick="tableGenerate()">Generate</button>
 <div id="tableResult" class="result"></div>
-
 </div>
-
 
 <div class="tool-card">
+<h3>🧠 Knowledge Quiz</h3>
+<button onclick="startQuiz()">Start Quiz</button>
+<div id="quiz" class="result"></div>
+</div>
 
+</div>
+</section>
+
+
+<!-- ENGINEERING -->
+<section class="section" data-category="engineering">
+<h2>⚡ Engineering Tools</h2>
+
+<div class="tool-grid">
+
+<div class="tool-card">
+<h3>🔌 Ohm's Law</h3>
+<input id="voltage" type="number" placeholder="Voltage (V)">
+<input id="resistance" type="number" placeholder="Resistance (Ω)">
+<button onclick="ohmCalc()">Calculate Current</button>
+<div id="ohmResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>⚡ Electrical Power</h3>
+<input id="powerV" type="number" placeholder="Voltage">
+<input id="powerI" type="number" placeholder="Current">
+<button onclick="powerCalc()">Calculate</button>
+<div id="powerResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>🏎️ Speed Calculator</h3>
+<input id="distance" type="number" placeholder="Distance">
+<input id="time" type="number" placeholder="Time">
+<button onclick="speedCalc()">Calculate</button>
+<div id="speedResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>🔢 2×2 Matrix Determinant</h3>
+<input id="m11" type="number" placeholder="a">
+<input id="m12" type="number" placeholder="b">
+<input id="m21" type="number" placeholder="c">
+<input id="m22" type="number" placeholder="d">
+<button onclick="matrixCalc()">Calculate</button>
+<div id="matrixResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>📐 Area Calculator</h3>
+<select id="areaType">
+<option value="square">Square</option>
+<option value="rectangle">Rectangle</option>
+<option value="circle">Circle</option>
+<option value="triangle">Triangle</option>
+</select>
+<input id="areaA" type="number" placeholder="Value 1">
+<input id="areaB" type="number" placeholder="Value 2">
+<button onclick="areaCalc()">Calculate</button>
+<div id="areaResult" class="result"></div>
+</div>
+
+</div>
+</section>
+
+
+<!-- IT -->
+<section class="section" data-category="it">
+<h2>💻 IT Tools</h2>
+
+<div class="tool-grid">
+
+<div class="tool-card">
+<h3>🔢 Binary → Decimal</h3>
+<input id="binary" placeholder="10101">
+<button onclick="binaryCalc()">Convert</button>
+<div id="binaryResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>🔢 Decimal → Binary</h3>
+<input id="decimal" type="number" placeholder="25">
+<button onclick="decimalCalc()">Convert</button>
+<div id="decimalResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>🧹 JSON Formatter</h3>
+<textarea id="jsonInput" placeholder='{"name":"Sahil"}'></textarea>
+<button onclick="formatJSON()">Format JSON</button>
+<div id="jsonResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>📝 Word Counter</h3>
+<textarea id="wordInput" placeholder="Write something..."></textarea>
+<button onclick="wordCount()">Count</button>
+<div id="wordResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>🔐 Base64 Encoder</h3>
+<input id="base64Input" placeholder="Enter text">
+<button onclick="base64Encode()">Encode</button>
+<div id="base64Result" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>🆔 UUID Generator</h3>
+<button onclick="uuidGenerate()">Generate UUID</button>
+<div id="uuidResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>🧮 Scientific Calculator</h3>
+<input id="scientificInput" placeholder="Example: 2+5*3">
+<button onclick="scientificCalc()">Calculate</button>
+<div id="scientificResult" class="result"></div>
+</div>
+
+</div>
+</section>
+
+
+<!-- DESIGN -->
+<section class="section" data-category="design">
+<h2>🎨 Design Tools</h2>
+
+<div class="tool-grid">
+
+<div class="tool-card">
+<h3>🎨 Color Picker</h3>
+<input id="colorInput" type="color" value="#2563eb">
+<button onclick="colorShow()">Show Color</button>
+<div id="colorBox" class="color-box"></div>
+<div id="colorResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>🌈 Gradient Generator</h3>
+<input id="gradient1" type="color" value="#2563eb">
+<input id="gradient2" type="color" value="#7c3aed">
+<button onclick="gradientGenerate()">Generate</button>
+<div id="gradientBox" class="color-box"></div>
+<div id="gradientResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>📱 Aspect Ratio</h3>
+<input id="ratioW" type="number" placeholder="Width">
+<input id="ratioH" type="number" placeholder="Height">
+<button onclick="ratioCalc()">Calculate</button>
+<div id="ratioResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>🔳 QR Generator</h3>
+<input id="qrText" placeholder="Enter text or URL">
+<button onclick="qrGenerate()">Generate QR</button>
+<div id="qrResult" class="result"></div>
+</div>
+
+</div>
+</section>
+
+
+<!-- BUSINESS -->
+<section class="section" data-category="business">
+<h2>💼 Business Tools</h2>
+
+<div class="tool-grid">
+
+<div class="tool-card">
+<h3>💰 EMI Calculator</h3>
+<input id="emiP" type="number" placeholder="Loan Amount">
+<input id="emiR" type="number" placeholder="Interest %">
+<input id="emiN" type="number" placeholder="Months">
+<button onclick="emiCalc()">Calculate EMI</button>
+<div id="emiResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>📈 Profit / Loss</h3>
+<input id="buyPrice" type="number" placeholder="Buying Price">
+<input id="sellPrice" type="number" placeholder="Selling Price">
+<button onclick="profitCalc()">Calculate</button>
+<div id="profitResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>🧾 GST Calculator</h3>
+<input id="gstPrice" type="number" placeholder="Amount">
+<input id="gstRate" type="number" placeholder="GST %">
+<button onclick="gstCalc()">Calculate</button>
+<div id="gstResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>🏷️ Discount Calculator</h3>
+<input id="discountPrice" type="number" placeholder="Original Price">
+<input id="discountRate" type="number" placeholder="Discount %">
+<button onclick="discountCalc()">Calculate</button>
+<div id="discountResult" class="result"></div>
+</div>
+
+</div>
+</section>
+
+
+<!-- TEACHER -->
+<section class="section" data-category="teacher">
+<h2>👨‍🏫 Teacher Tools</h2>
+
+<div class="tool-grid">
+
+<div class="tool-card">
+<h3>👨‍🎓 Random Student Picker</h3>
+<textarea id="students" placeholder="Enter one student per line"></textarea>
+<button onclick="pickStudent()">Pick Student</button>
+<div id="studentResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>🔢 Random Number</h3>
+<input id="randomMin" type="number" placeholder="Minimum">
+<input id="randomMax" type="number" placeholder="Maximum">
+<button onclick="randomNumber()">Generate</button>
+<div id="randomResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>📝 Quick Notes</h3>
+<textarea id="notes" placeholder="Write your notes..."></textarea>
+<button onclick="saveNotes()">Save Notes</button>
+<div id="notesResult" class="result"></div>
+</div>
+
+</div>
+</section>
+
+
+<!-- KIDS -->
+<section class="section" data-category="kids">
+<h2>🧒 Kids Tools</h2>
+
+<div class="tool-grid">
+
+<div class="tool-card">
 <h3>🎯 Number Guessing Game</h3>
-
-<p>Guess a number from 1 to 10.</p>
-
-<input
-id="guess"
-type="number"
-min="1"
-max="10">
-
-<button
-class="tool-btn"
-onclick="guessGame()">
-Guess
-</button>
-
+<p>Guess a number between 1 and 10.</p>
+<input id="guessInput" type="number" min="1" max="10">
+<button onclick="guessGame()">Guess</button>
 <div id="guessResult" class="result"></div>
+</div>
 
+<div class="tool-card">
+<h3>✖️ Multiplication Table</h3>
+<input id="kidsTable" type="number" placeholder="Enter number">
+<button onclick="kidsTableGenerate()">Show Table</button>
+<div id="kidsTableResult" class="result"></div>
 </div>
 
 </div>
 </section>
 
 
-<!-- =====================================================
-                        QUIZ
-===================================================== -->
+<!-- DAILY -->
+<section class="section" data-category="daily">
+<h2>📅 Daily Useful Tools</h2>
 
-<section class="section">
+<div class="tool-grid">
 
-<h2 class="section-title">🧠 Knowledge Quiz</h2>
-
-<div class="quiz-area">
-
-<div class="quiz-buttons">
-
-<button onclick="startQuiz('general')">
-General
-</button>
-
-<button onclick="startQuiz('computer')">
-Computer
-</button>
-
-<button onclick="startQuiz('science')">
-Science
-</button>
-
+<div class="tool-card">
+<h3>🎂 Age Calculator</h3>
+<input id="birthDate" type="date">
+<button onclick="ageCalc()">Calculate Age</button>
+<div id="ageResult" class="result"></div>
 </div>
 
-<div id="quizBox">
-Select a quiz to start.
+<div class="tool-card">
+<h3>🔐 Password Generator</h3>
+<input id="passwordLength" type="number" value="12" min="4" max="50">
+<button onclick="passwordGenerate()">Generate Password</button>
+<div id="passwordResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>🛣️ KM → Miles</h3>
+<input id="km" type="number" placeholder="Kilometers">
+<button onclick="kmMiles()">Convert</button>
+<div id="kmResult" class="result"></div>
+</div>
+
+<div class="tool-card">
+<h3>📅 Days Between Dates</h3>
+<input id="date1" type="date">
+<input id="date2" type="date">
+<button onclick="dateDifference()">Calculate</button>
+<div id="dateResult" class="result"></div>
 </div>
 
 </div>
-
 </section>
 
+</main>
 
-</div>
-
-
-<!-- FOOTER -->
 
 <footer>
-
 <h3>🌐 DailyMate</h3>
-
 <p>One Website • Everyday Useful</p>
-
 <br>
-
-<p>© 2026 DailyMate</p>
-
 <p>🚀 Developed by <strong>Sahil Narwade</strong></p>
-
+<p>© 2026 DailyMate</p>
 </footer>
-
-</div>
 
 
 <script>
 
-/* =====================================================
-                        LOGIN
-===================================================== */
+/* DARK MODE */
+function toggleDark(){
+  document.body.classList.toggle("dark");
 
-function login(){
+  localStorage.setItem(
+    "darkMode",
+    document.body.classList.contains("dark")
+  );
+}
 
-    const name =
-        document.getElementById("userName")
-        .value
-        .trim();
+if(localStorage.getItem("darkMode")==="true"){
+  document.body.classList.add("dark");
+}
 
-    if(name === ""){
 
-        alert("Please enter your name!");
+/* CATEGORY FILTER */
+function go(category){
 
-        return;
+  const sections =
+    document.querySelectorAll(".section[data-category]");
+
+  if(category==="all"){
+
+    sections.forEach(function(section){
+      section.style.display="block";
+    });
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+    return;
+  }
+
+  sections.forEach(function(section){
+
+    if(section.dataset.category===category){
+
+      section.style.display="block";
+
+      section.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
+    }else{
+
+      section.style.display="none";
+
     }
 
-    localStorage.setItem(
-        "dailymateUser",
-        name
-    );
+  });
+}
 
-    document.getElem
+
+/* SEARCH */
+function searchTools(){
+
+  const query =
+    document.getElementById("search").value
+    .toLowerCase()
+    .trim();
+
+  const cards =
+    document.querySelectorAll(".tool-card");
+
+  cards.forEach(function(card){
+
+    const text =
+      card.innerText.toLowerCase();
+
+    card.style.display =
+      text.includes(query) ? "block" : "none";
+
+  });
+}
+
+
+/* AGE */
+function ageCalc(){
+
+  const birth =
+    new Date(document.getElementById("birthDate").value);
+
+  if(isNaN(birth)){
+    document.getElementById("ageResult").innerText =
+      "Please select birth date";
+    return;
+  }
+
+  const today=new Date();
+
+  let age=today.getFullYear()-birth.getFullYear();
+
+  const month =
+    today.getMonth()-birth.getMonth();
+
+  if(
+    month<0 ||
+    (month===0 && today.getDate()<birth.getDate())
+  ){
+    age--;
+  }
+
+  document.getElementById("ageResult").innerText =
+    "Your age is "+age+" years";
+}
+
+
+/* QR */
+function qrGenerate(){
+
+  const text =
+    document.getElementById("qrText").value.trim();
+
+  if(!text){
+    document.getElementById("qrResult").innerText =
+      "Enter text or URL";
+    return;
+  }
+
+  document.getElementById("qrResult").innerHTML =
+    '<img style="max-width:200px" alt="QR Code" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(text)+'">';
+}
+
+
+/* PASSWORD */
+function passwordGenerate(){
+
+  const length =
+    Number(document.getElementById("passwordLength").value);
+
+  const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+
+  let password="";
+
+  for(let i=0;i<length;i++){
+
+    password +=
+      chars.charAt(
+        Math.floor(Math.random()*chars.length)
+      );
+
+  }
+
+  document.getElementById("passwordResult").innerText =
+    password;
+}
+
+
+/* KM TO MILES */
+function kmMiles(){
+
+  const km =
+    Number(document.getElementById("km").value);
+
+  if(!isFinite(km)){
+    document.getElementById("kmResult").innerText =
+      "Enter valid number";
+    return;
+  }
+
+  document.getElementById("kmResult").innerText =
+    (km*0.621371).toFixed(3)+" miles";
+}
+
+
+/* DATE DIFFERENCE */
+function dateDifference(){
+
+  const d1 =
+    new Date(document.getElementById("date1").value);
+
+  const d2 =
+    new Date(document.getElementById("date2").value);
+
+  if(isNaN(d1)||isNaN(d2)){
+    document.getElementById("dateResult").innerText =
+      "Select both dates";
+    return;
+  }
+
+  const diff =
+    Math.abs(d2-d1);
+
+  const days =
+    Math.ceil(diff/(1000*60*60*24));
+
+  document.getElementById("dateResult").innerText =
+    days+" days";
+}
+
+
+/* DISCOUNT */
+function discountCalc(){
+
+  const price =
+    Number(document.getElementById("discountPrice").value);
+
+  const rate =
+    Number(document.getElementById("discountRate").value);
+
+  const discount =
+    price*rate/100;
+
+  const finalPrice =
+    price-discount;
+
+  document.getElementById("discountResult").innerText =
+    "Discount: ₹"+discount.toFixed(2)+
+    " | Final Price: ₹"+finalPrice.toFixed(2);
+}
+
+
+/* PERCENTAGE */
+function percentageCalc(){
+
+  const obtained =
+    Number(document.getElementById("percentValue").value);
+
+  const total =
+    Number(document.getElementById("percentTotal").value);
+
+  if(total<=0){
+    document.getElementById("percentResult").innerText =
+      "Enter valid total marks";
+    return;
+  }
+
+  document.getElementById("percentResult").innerText =
+    ((obtained/total)*100).toFixed(2)+"%";
+}
+
+
+/* CGPA */
+function cgpaCalc(){
+
+  const cgpa =
+    Number(document.getElementById("cgpa").value);
+
+  document.getElementById("cgpaResult").innerText =
+    "Approx Percentage: "+(cgpa*9.5).toFixed(2)+"%";
+}
+
+
+/* ATTENDANCE */
+function attendanceCalc(){
+
+  const present =
+    Number(document.getElementById("attPresent").value);
+
+  const total =
+    Number(document.getElementById("attTotal").value);
+
+  if(total<=0){
+    document.getElementById("attResult").innerText =
+      "Enter valid total days";
+    return;
+  }
+
+  document.getElementById("attResult").innerText =
+    "Attendance: "+((present/total)*100).toFixed(2)+"%";
+}
+
+
+/* SCIENTIFIC */
+function scientificCalc(){
+
+  const input =
+    document.getElementById("scientificInput").value.trim();
+
+  if(!/^[0-9+\-*/().%\s]+$/.test(input)){
+    document.getElementById("scientificResult").innerText =
+      "Only basic math expressions allowed";
+    return;
+  }
+
+  try{
+
+    const result =
+      Function('"use strict";return ('+input+')')();
+
+    document.getElementById("scientificResult").innerText =
+      result;
+
+  }catch{
+
+    document.getElementById("scientificResult").innerText =
+      "Invalid expression";
+
+  }
+}
+
+
+/* AREA */
+function areaCalc(){
+
+  const type =
+    document.getElementById("areaType").value;
+
+  const a =
+    Number(do
