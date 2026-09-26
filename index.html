@@ -43,8 +43,64 @@ button{
     cursor:pointer;
 }
 
+.hidden{
+    display:none!important;
+}
 
-/* HEADER */
+/* ================= LOGIN ================= */
+
+#loginPage{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+}
+
+.login-box{
+    width:100%;
+    max-width:420px;
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 20px 60px #0004;
+}
+
+.logo{
+    text-align:center;
+    font-size:32px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.login-sub{
+    text-align:center;
+    color:#64748b;
+    margin-bottom:25px;
+}
+
+.login-box input{
+    width:100%;
+    padding:14px;
+    margin:8px 0;
+    border:1px solid #ddd;
+    border-radius:12px;
+    outline:none;
+}
+
+.primary{
+    width:100%;
+    border:0;
+    padding:14px;
+    margin-top:10px;
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    border-radius:12px;
+    font-weight:bold;
+}
+
+/* ================= HEADER ================= */
 
 header{
     background:linear-gradient(135deg,#2563eb,#7c3aed);
@@ -83,7 +139,7 @@ header p{
     color:white;
 }
 
-/* SEARCH */
+/* ================= SEARCH ================= */
 
 .search-area{
     max-width:1200px;
@@ -91,21 +147,17 @@ header p{
     padding:0 20px;
 }
 
-.search-box{
-    display:flex;
-    gap:10px;
-}
-
 .search-box input{
-    flex:1;
+    width:100%;
     padding:15px;
     border:1px solid var(--border);
     background:var(--card);
     color:var(--text);
     border-radius:14px;
+    outline:none;
 }
 
-/* NAV */
+/* ================= NAV ================= */
 
 nav{
     background:var(--card);
@@ -129,7 +181,12 @@ nav button{
     font-weight:bold;
 }
 
-/* MAIN */
+body.dark nav button{
+    background:#334155;
+    color:white;
+}
+
+/* ================= MAIN ================= */
 
 .container{
     max-width:1200px;
@@ -148,8 +205,7 @@ nav button{
 
 .tool-grid{
     display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(230px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
     gap:15px;
 }
 
@@ -214,7 +270,7 @@ body.dark .result{
     background:#172554;
 }
 
-/* QUIZ */
+/* ================= QUIZ ================= */
 
 .quiz-area{
     background:var(--card);
@@ -247,7 +303,7 @@ body.dark .result{
     cursor:pointer;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 footer{
     background:#111827;
@@ -256,7 +312,7 @@ footer{
     padding:30px;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media(max-width:650px){
 
@@ -274,96 +330,81 @@ footer{
         padding-left:12px;
         padding-right:12px;
     }
-
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= LOGIN ================= -->
+<!-- =====================================================
+                    LOGIN PAGE
+===================================================== -->
 
 <div id="loginPage">
 
-<div class="login-box">
+    <div class="login-box">
 
-<div class="logo">🌐 DailyMate</div>
+        <div class="logo">🌐 DailyMate</div>
 
-<div class="login-sub">
-Everything You Need in One Place
-</div>
+        <div class="login-sub">
+            Everything You Need in One Place
+        </div>
 
-<input
-id="userName"
-type="text"
-placeholder="Enter your name">
+        <input
+            id="userName"
+            type="text"
+            placeholder="Enter your name"
+            autocomplete="name"
+        >
 
-<input
-id="mobile"
-type="tel"
-maxlength="10"
-placeholder="Enter 10 digit mobile number">
+        <button
+            class="primary"
+            onclick="login()">
+            Login 🚀
+        </button>
 
-<button
-class="primary"
-onclick="sendOTP()">
-Send OTP
-</button>
+        <p
+            id="loginMessage"
+            style="text-align:center;margin-top:15px;color:#64748b">
+        </p>
 
-<div id="otpSection" class="otp-box hidden">
-
-<input
-id="otp"
-type="number"
-placeholder="Enter OTP">
-
-<button
-class="primary"
-onclick="verifyOTP()">
-Verify OTP
-</button>
-
-<div id="demoOTP"
-style="text-align:center;margin-top:10px;color:#64748b">
-</div>
+    </div>
 
 </div>
 
-<p
-id="loginMessage"
-style="text-align:center;margin-top:15px">
-</p>
 
-</div>
-</div>
-
-
-<!-- ================= APP ================= -->
+<!-- =====================================================
+                    MAIN APP
+===================================================== -->
 
 <div id="app" class="hidden">
 
 <header>
 
-<div class="header-content">
+    <div class="header-content">
 
-<div>
-<h1>🌐 DailyMate</h1>
-<p>One Website • Everyday Useful</p>
-</div>
+        <div>
+            <h1>🌐 DailyMate</h1>
+            <p>One Website • Everyday Useful</p>
+        </div>
 
-<div class="header-buttons">
+        <div class="header-buttons">
 
-<button class="icon-btn" onclick="toggleDark()">
-🌙
-</button>
+            <button
+                class="icon-btn"
+                onclick="toggleDark()">
+                🌙 Dark
+            </button>
 
-<button class="icon-btn" onclick="logout()">
-Logout
-</button>
+            <button
+                class="icon-btn"
+                onclick="logout()">
+                Logout
+            </button>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
 </header>
 
@@ -372,31 +413,57 @@ Logout
 
 <div class="search-area">
 
-<div class="search-box">
+    <div class="search-box">
 
-<input
-id="search"
-placeholder="🔍 Search tools..."
-oninput="searchTools()">
+        <input
+            id="search"
+            placeholder="🔍 Search tools..."
+            oninput="searchTools()">
+
+    </div>
 
 </div>
 
-</div>
 
-
-<!-- NAV -->
+<!-- NAVIGATION -->
 
 <nav>
 
-<button onclick="go('all')">🏠 All</button>
-<button onclick="go('education')">🎓 Education</button>
-<button onclick="go('engineering')">⚙️ Engineering</button>
-<button onclick="go('it')">💻 IT</button>
-<button onclick="go('design')">🎨 Design</button>
-<button onclick="go('business')">💼 Business</button>
-<button onclick="go('teacher')">👨‍🏫 Teacher</button>
-<button onclick="go('kids')">🧒 Kids</button>
-<button onclick="go('daily')">🏠 Daily</button>
+    <button onclick="go('all')">
+        🏠 All
+    </button>
+
+    <button onclick="go('education')">
+        🎓 Education
+    </button>
+
+    <button onclick="go('engineering')">
+        ⚙️ Engineering
+    </button>
+
+    <button onclick="go('it')">
+        💻 IT
+    </button>
+
+    <button onclick="go('design')">
+        🎨 Design
+    </button>
+
+    <button onclick="go('business')">
+        💼 Business
+    </button>
+
+    <button onclick="go('teacher')">
+        👨‍🏫 Teacher
+    </button>
+
+    <button onclick="go('kids')">
+        🧒 Kids
+    </button>
+
+    <button onclick="go('daily')">
+        🏠 Daily
+    </button>
 
 </nav>
 
@@ -404,20 +471,15 @@ oninput="searchTools()">
 <div class="container">
 
 
-<!-- ================= DAILY ================= -->
+<!-- =====================================================
+                        DAILY
+===================================================== -->
 
-<section
-class="section"
-data-category="daily">
+<section class="section" data-category="daily">
 
-<h2 class="section-title">
-🏠 Daily Tools
-</h2>
+<h2 class="section-title">🏠 Daily Tools</h2>
 
 <div class="tool-grid">
-
-
-<!-- AGE -->
 
 <div class="tool-card">
 
@@ -425,8 +487,7 @@ data-category="daily">
 
 <input type="date" id="dob">
 
-<button class="tool-btn"
-onclick="ageCalc()">
+<button class="tool-btn" onclick="ageCalc()">
 Calculate
 </button>
 
@@ -434,8 +495,6 @@ Calculate
 
 </div>
 
-
-<!-- QR -->
 
 <div class="tool-card">
 
@@ -445,8 +504,7 @@ Calculate
 id="qrText"
 placeholder="Enter text / URL">
 
-<button class="tool-btn"
-onclick="qrGenerate()">
+<button class="tool-btn" onclick="qrGenerate()">
 Generate
 </button>
 
@@ -454,8 +512,6 @@ Generate
 
 </div>
 
-
-<!-- PASSWORD -->
 
 <div class="tool-card">
 
@@ -468,7 +524,8 @@ value="12"
 min="4"
 max="50">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="passwordGenerate()">
 Generate
 </button>
@@ -477,8 +534,6 @@ Generate
 
 </div>
 
-
-<!-- UNIT -->
 
 <div class="tool-card">
 
@@ -489,8 +544,7 @@ id="km"
 type="number"
 placeholder="Kilometers">
 
-<button class="tool-btn"
-onclick="kmMiles()">
+<button class="tool-btn" onclick="kmMiles()">
 Convert
 </button>
 
@@ -499,8 +553,6 @@ Convert
 </div>
 
 
-<!-- DATE -->
-
 <div class="tool-card">
 
 <h3>📅 Days Between Dates</h3>
@@ -508,7 +560,8 @@ Convert
 <input type="date" id="date1">
 <input type="date" id="date2">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="dateDifference()">
 Calculate
 </button>
@@ -517,8 +570,6 @@ Calculate
 
 </div>
 
-
-<!-- DISCOUNT -->
 
 <div class="tool-card">
 
@@ -534,7 +585,8 @@ id="discount"
 type="number"
 placeholder="Discount %">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="discountCalc()">
 Calculate
 </button>
@@ -547,32 +599,32 @@ Calculate
 </section>
 
 
-<!-- ================= EDUCATION ================= -->
+<!-- =====================================================
+                    EDUCATION
+===================================================== -->
 
-<section
-class="section"
-data-category="education">
+<section class="section" data-category="education">
 
-<h2 class="section-title">
-🎓 Education Tools
-</h2>
+<h2 class="section-title">🎓 Education Tools</h2>
 
 <div class="tool-grid">
-
 
 <div class="tool-card">
 
 <h3>📊 Percentage</h3>
 
-<input id="obtained"
+<input
+id="obtained"
 type="number"
 placeholder="Obtained marks">
 
-<input id="total"
+<input
+id="total"
 type="number"
 placeholder="Total marks">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="percentageCalc()">
 Calculate
 </button>
@@ -592,7 +644,8 @@ type="number"
 step=".01"
 placeholder="CGPA">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="cgpaCalc()">
 Convert
 </button>
@@ -616,7 +669,8 @@ id="conducted"
 type="number"
 placeholder="Total classes">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="attendanceCalc()">
 Calculate
 </button>
@@ -635,7 +689,8 @@ id="calc"
 type="text"
 placeholder="Example: 25*4+10">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="scientificCalc()">
 Calculate
 </button>
@@ -659,7 +714,8 @@ id="width"
 type="number"
 placeholder="Width">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="areaCalc()">
 Rectangle Area
 </button>
@@ -679,12 +735,14 @@ style="font-size:30px;text-align:center;margin:10px">
 25:00
 </div>
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="startTimer()">
 Start
 </button>
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="resetTimer()">
 Reset
 </button>
@@ -695,18 +753,15 @@ Reset
 </section>
 
 
-<!-- ================= ENGINEERING ================= -->
+<!-- =====================================================
+                    ENGINEERING
+===================================================== -->
 
-<section
-class="section"
-data-category="engineering">
+<section class="section" data-category="engineering">
 
-<h2 class="section-title">
-⚙️ Engineering Tools
-</h2>
+<h2 class="section-title">⚙️ Engineering Tools</h2>
 
 <div class="tool-grid">
-
 
 <div class="tool-card">
 
@@ -722,7 +777,8 @@ id="resistance"
 type="number"
 placeholder="Resistance (Ω)">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="ohmCalc()">
 Calculate Current
 </button>
@@ -746,7 +802,8 @@ id="current2"
 type="number"
 placeholder="Current">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="powerCalc()">
 Calculate
 </button>
@@ -770,7 +827,8 @@ id="time"
 type="number"
 placeholder="Time">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="speedCalc()">
 Calculate
 </button>
@@ -789,7 +847,8 @@ Calculate
 <input id="m3" type="number" placeholder="c">
 <input id="m4" type="number" placeholder="d">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="matrixCalc()">
 Calculate
 </button>
@@ -802,18 +861,15 @@ Calculate
 </section>
 
 
-<!-- ================= IT ================= -->
+<!-- =====================================================
+                        IT
+===================================================== -->
 
-<section
-class="section"
-data-category="it">
+<section class="section" data-category="it">
 
-<h2 class="section-title">
-💻 IT & Developer Tools
-</h2>
+<h2 class="section-title">💻 IT & Developer Tools</h2>
 
 <div class="tool-grid">
-
 
 <div class="tool-card">
 
@@ -823,7 +879,8 @@ data-category="it">
 id="binary"
 placeholder="Example: 1010">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="binaryCalc()">
 Convert
 </button>
@@ -842,7 +899,8 @@ id="decimal"
 type="number"
 placeholder="Example: 10">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="decimalCalc()">
 Convert
 </button>
@@ -859,10 +917,10 @@ Convert
 <textarea
 id="jsonInput"
 rows="5"
-placeholder='{"name":"DailyMate"}'>
-</textarea>
+placeholder='{"name":"DailyMate"}'>{"name":"DailyMate"}</textarea>
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="formatJSON()">
 Format
 </button>
@@ -880,8 +938,7 @@ Format
 id="wordInput"
 rows="4"
 placeholder="Type your text..."
-oninput="wordCount()">
-</textarea>
+oninput="wordCount()"></textarea>
 
 <div id="wordResult" class="result">
 Words: 0 | Characters: 0
@@ -898,7 +955,8 @@ Words: 0 | Characters: 0
 id="baseInput"
 placeholder="Enter text">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="base64Encode()">
 Encode
 </button>
@@ -912,7 +970,8 @@ Encode
 
 <h3>🆔 UUID Generator</h3>
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="uuidGenerate()">
 Generate UUID
 </button>
@@ -925,18 +984,15 @@ Generate UUID
 </section>
 
 
-<!-- ================= DESIGN ================= -->
+<!-- =====================================================
+                        DESIGN
+===================================================== -->
 
-<section
-class="section"
-data-category="design">
+<section class="section" data-category="design">
 
-<h2 class="section-title">
-🎨 Design & Creator Tools
-</h2>
+<h2 class="section-title">🎨 Design & Creator Tools</h2>
 
 <div class="tool-grid">
-
 
 <div class="tool-card">
 
@@ -948,8 +1004,7 @@ id="colorPicker"
 value="#2563eb"
 oninput="colorShow()">
 
-<div id="colorResult"
-class="result">
+<div id="colorResult" class="result">
 #2563EB
 </div>
 
@@ -970,7 +1025,8 @@ type="color"
 id="color2"
 value="#7c3aed">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="gradientGenerate()">
 Generate
 </button>
@@ -997,7 +1053,8 @@ id="ratioH"
 type="number"
 placeholder="Height">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="ratioCalc()">
 Calculate
 </button>
@@ -1010,18 +1067,15 @@ Calculate
 </section>
 
 
-<!-- ================= BUSINESS ================= -->
+<!-- =====================================================
+                        BUSINESS
+===================================================== -->
 
-<section
-class="section"
-data-category="business">
+<section class="section" data-category="business">
 
-<h2 class="section-title">
-💼 Business & Finance
-</h2>
+<h2 class="section-title">💼 Business & Finance</h2>
 
 <div class="tool-grid">
-
 
 <div class="tool-card">
 
@@ -1042,7 +1096,8 @@ id="months"
 type="number"
 placeholder="Months">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="emiCalc()">
 Calculate EMI
 </button>
@@ -1066,7 +1121,8 @@ id="selling"
 type="number"
 placeholder="Selling price">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="profitCalc()">
 Calculate
 </button>
@@ -1090,7 +1146,8 @@ id="gstRate"
 type="number"
 placeholder="GST %">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="gstCalc()">
 Calculate
 </button>
@@ -1103,18 +1160,15 @@ Calculate
 </section>
 
 
-<!-- ================= TEACHER ================= -->
+<!-- =====================================================
+                        TEACHER
+===================================================== -->
 
-<section
-class="section"
-data-category="teacher">
+<section class="section" data-category="teacher">
 
-<h2 class="section-title">
-👨‍🏫 Teacher Tools
-</h2>
+<h2 class="section-title">👨‍🏫 Teacher Tools</h2>
 
 <div class="tool-grid">
-
 
 <div class="tool-card">
 
@@ -1123,10 +1177,10 @@ data-category="teacher">
 <textarea
 id="students"
 rows="5"
-placeholder="Enter names separated by comma">
-</textarea>
+placeholder="Enter names separated by comma"></textarea>
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="pickStudent()">
 Pick Student
 </button>
@@ -1143,10 +1197,10 @@ Pick Student
 <textarea
 id="notes"
 rows="5"
-placeholder="Write your notes...">
-</textarea>
+placeholder="Write your notes..."></textarea>
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="saveNotes()">
 Save Notes
 </button>
@@ -1170,7 +1224,8 @@ id="max"
 type="number"
 placeholder="Maximum">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="randomNumber()">
 Generate
 </button>
@@ -1183,18 +1238,15 @@ Generate
 </section>
 
 
-<!-- ================= KIDS ================= -->
+<!-- =====================================================
+                        KIDS
+===================================================== -->
 
-<section
-class="section"
-data-category="kids">
+<section class="section" data-category="kids">
 
-<h2 class="section-title">
-🧒 Kids Zone
-</h2>
+<h2 class="section-title">🧒 Kids Zone</h2>
 
 <div class="tool-grid">
-
 
 <div class="tool-card">
 
@@ -1205,7 +1257,8 @@ id="tableNum"
 type="number"
 placeholder="Enter number">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="tableGenerate()">
 Show Table
 </button>
@@ -1227,7 +1280,8 @@ type="number"
 min="1"
 max="10">
 
-<button class="tool-btn"
+<button
+class="tool-btn"
 onclick="guessGame()">
 Guess
 </button>
@@ -1240,17 +1294,18 @@ Guess
 </section>
 
 
-<!-- ================= QUIZ ================= -->
+<!-- =====================================================
+                        QUIZ
+===================================================== -->
 
 <section class="section">
 
-<h2 class="section-title">
-🧠 Knowledge Quiz
-</h2>
+<h2 class="section-title">🧠 Knowledge Quiz</h2>
 
 <div class="quiz-area">
 
 <div class="quiz-buttons">
+
 <button onclick="startQuiz('general')">
 General
 </button>
@@ -1262,6 +1317,7 @@ Computer
 <button onclick="startQuiz('science')">
 Science
 </button>
+
 </div>
 
 <div id="quizBox">
@@ -1276,11 +1332,20 @@ Select a quiz to start.
 </div>
 
 
+<!-- FOOTER -->
+
 <footer>
+
 <h3>🌐 DailyMate</h3>
+
 <p>One Website • Everyday Useful</p>
+
 <br>
+
 <p>© 2026 DailyMate</p>
+
+<p>🚀 Developed by <strong>Sahil Narwade</strong></p>
+
 </footer>
 
 </div>
@@ -1288,115 +1353,27 @@ Select a quiz to start.
 
 <script>
 
-/* ================= LOGIN ================= */
+/* =====================================================
+                        LOGIN
+===================================================== */
 
-let generatedOTP="";
+function login(){
 
-function sendOTP(){
+    const name =
+        document.getElementById("userName")
+        .value
+        .trim();
 
-    let name=document.getElementById("userName").value.trim();
-    let mobile=document.getElementById("mobile").value.trim();
+    if(name === ""){
 
-    if(name===""){
-        alert("Enter your name");
-        return;
-    }
+        alert("Please enter your name!");
 
-    if(!/^[0-9]{10}$/.test(mobile)){
-        alert("Enter valid 10 digit mobile number");
-        return;
-    }
-
-    generatedOTP=
-    Math.floor(100000+Math.random()*900000).toString();
-
-    document.getElementById("otpSection")
-    .classList.remove("hidden");
-
-    document.getElementById("demoOTP").innerText=
-    "Demo OTP: "+generatedOTP;
-
-    document.getElementById("loginMessage").innerText=
-    "OTP generated successfully.";
-}
-
-function verifyOTP(){
-
-    let otp=document.getElementById("otp").value;
-
-    if(otp!==generatedOTP){
-        alert("Wrong OTP");
         return;
     }
 
     localStorage.setItem(
         "dailymateUser",
-        document.getElementById("userName").value
+        name
     );
 
-    document.getElementById("loginPage")
-    .classList.add("hidden");
-
-    document.getElementById("app")
-    .classList.remove("hidden");
-}
-
-function logout(){
-
-    localStorage.removeItem("dailymateUser");
-
-    location.reload();
-}
-
-window.onload=function(){
-
-    if(localStorage.getItem("dailymateUser")){
-
-        document.getElementById("loginPage")
-        .classList.add("hidden");
-
-        document.getElementById("app")
-        .classList.remove("hidden");
-    }
-};
-
-
-/* ================= DARK MODE ================= */
-
-function toggleDark(){
-
-    document.body.classList.toggle("dark");
-
-    localStorage.setItem(
-        "darkMode",
-        document.body.classList.contains("dark")
-    );
-}
-
-if(localStorage.getItem("darkMode")==="true"){
-    document.body.classList.add("dark");
-}
-
-
-/* ================= NAVIGATION ================= */
-
-function go(category){
-
-    if(category==="all"){
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
-        return;
-    }
-
-    let section=
-    document.querySelector(
-        `[data-category="${category}"]`
-  <footer>
-    <h3>🌐 DailyMate</h3>
-    <p>One Website • Everyday Useful</p>
-    <br>
-    <p>© 2026 DailyMate</p>
-    <p>🚀 Developed by <strong>Sahil Narwade</strong></p>
-</footer>
+    document.getElem
